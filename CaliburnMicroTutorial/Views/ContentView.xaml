@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="CaliburnMicroTutorial.ContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CaliburnMicroTutorial"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="LightYellow">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition> <!-- Spacer-->
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="CONTENT VIEW MODEL" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="5" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <Label Content="Enter new Message" Margin="5" />
+            <TextBox Text="{Binding Title.Message}" Width="100" Height="20" Background="LightPink" />
+        </StackPanel>
+        
+        <Label Content="{Binding Title.Message}"
+                   Grid.Row="1" Grid.Column="3" FontSize="20"
+                   Background="AliceBlue" >
+        </Label>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <Button x:Name="MessageProvider" Content="Getting Messages" Margin="5" />
+            <Button x:Name="SetMessage" Content="Setting Message" Margin="5" />
+        </StackPanel>
+        
+        
+        <!-- Spacer-->
+        <Rectangle Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Fill="DarkGray" Stroke="Gainsboro" StrokeThickness="3" Height="10" />
+
+        <!-- Adding Operation to the Operations -->
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Name" Width="50" Margin="5"/>
+            <TextBox x:Name="OperationName" Width="100" Height="20" Background="LightPink" />
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Val" Width="50" Margin="5"/>
+            <TextBox x:Name="OperationVal" Width="100" Height="20" Background="LightPink" />
+        </StackPanel>
+
+        <!-- Add Operation Button-->
+        <Button Grid.Row="7" Grid.Column="1" 
+                x:Name="AddOperation" Content="Add Operation" 
+                Margin="5" />
+
+        <!-- Show Operations List -->
+        <ListView Grid.Row="5" Grid.Column="3" Grid.RowSpan="4" ItemsSource="{Binding Operations.MyOperations}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="   " />
+                        <TextBlock Text="{Binding Val}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="CaliburnMicroTutorial.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaliburnMicroTutorial"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<Grid Grid.Row="0" >
+            <TextBlock x:Name="GreetingsMessage" FontSize="40" />
+            <Label x:Name="Title" HorizontalAlignment="Center" FontSize="40" />
+            <Button Content="{Binding ButtonText}" Width="100" Height="40"
+                cal:Message.Attach="[Event MouseDoubleClick] = [Action HelloClicked($eventArgs)]" >
+            </Button>
+        </Grid>-->
+        <Grid Grid.Row="1">
+            <DockPanel LastChildFill="True">
+                <ContentControl DockPanel.Dock="Top" x:Name="HeaderViewModel" />
+                <Rectangle Fill="DarkGray" Stroke="Gainsboro" StrokeThickness="3" Height="10" />
+                <ContentControl DockPanel.Dock="Bottom" x:Name="ContentViewModel" />
+            </DockPanel>
+        </Grid>        
+        
+       
+    </Grid>
+</Window>
