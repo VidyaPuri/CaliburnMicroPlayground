@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CaliburnMicroTutorial
 {
@@ -22,6 +23,8 @@ namespace CaliburnMicroTutorial
             ContentViewModel contentViewModel
             )
         {
+
+
             _greetingsMessageProvider = greetingsMessageProvider;
             _myOperations = myOperations;
 
@@ -30,6 +33,43 @@ namespace CaliburnMicroTutorial
 
             Items.AddRange(new Screen[] { HeaderViewModel, ContentViewModel });
 
+        }
+
+        private WindowState _windowState;
+
+        public WindowState WindowState
+        {
+            get { return _windowState; }
+            set
+            {
+                _windowState = value;
+                NotifyOfPropertyChange(() => WindowState);
+            }
+        }
+
+        public void DragWindow()
+        {
+            Window shellView = GetView(null) as Window;
+
+            shellView.DragMove();
+        }
+
+        public void MaximizeWindow()
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
+
+        public void MinimizeWindow()
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void CloseWindow()
+        {
+            Application.Current.Shutdown();
         }
 
         #region CommentedStuff

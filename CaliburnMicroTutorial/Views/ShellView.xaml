@@ -6,20 +6,35 @@
         xmlns:local="clr-namespace:CaliburnMicroTutorial"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
+        WindowState="{Binding WindowState}"
+        WindowStyle="None"
         Title="ShellView" Height="450" Width="800">
+
+    <!--<Frame NavigationUIVisibility="Hidden" />-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome UseAeroCaptionButtons="False" CaptionHeight="35"/>
+    </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <!--<Grid Grid.Row="0" >
-            <TextBlock x:Name="GreetingsMessage" FontSize="40" />
-            <Label x:Name="Title" HorizontalAlignment="Center" FontSize="40" />
-            <Button Content="{Binding ButtonText}" Width="100" Height="40"
-                cal:Message.Attach="[Event MouseDoubleClick] = [Action HelloClicked($eventArgs)]" >
-            </Button>
-        </Grid>-->
-        <Grid Grid.Row="1">
+
+
+        <Grid Grid.Row="0" >
+            <DockPanel
+                DockPanel.Dock ="Top"
+                LastChildFill="False" Background="AliceBlue"
+                cal:Message.Attach="[Event MouseDown] = [Action DragWindow]"
+                >
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="1" WindowChrome.IsHitTestVisibleInChrome="true">
+                    <Button x:Name="MinimizeWindow" Content="_" Padding="3" Margin="3" MinWidth="15"/>
+                    <Button x:Name="MaximizeWindow" Content="[]" Padding="3" Margin="3" MinWidth="15"/>
+                    <Button x:Name="CloseWindow" Content="X"  Padding="3" Margin="3" MinWidth="15"/>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="2">
             <DockPanel LastChildFill="True">
                 <ContentControl DockPanel.Dock="Top" x:Name="HeaderViewModel" />
                 <Rectangle Fill="DarkGray" Stroke="Gainsboro" StrokeThickness="3" Height="10" />
